@@ -110,6 +110,11 @@ def track(file_id):
     return render_template("track.html", track=track_data, features=features_data["audio_features"][0])
 
 
+# audio features page
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 # redirect if no id
 @app.route("/album/")
 @app.route("/track/")

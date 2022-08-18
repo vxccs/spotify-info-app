@@ -21,3 +21,4 @@ Due to Spotify's API limitations, each access token is only valid for an hour, t
 - Search function in addition to pasting links
 - Display artist data
 - Display playlist data
+- Display track lyrics

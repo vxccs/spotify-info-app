@@ -45,6 +45,11 @@ body {
 
 a {
   text-decoration: none;
+  color: var(--sp-white);
+}
+
+a:visited {
+  color: var(--sp-white);
 }
 
 a:hover,
@@ -629,4 +634,36 @@ a:active {
   -ms-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
+}
+
+.about-container {
+  margin-top: 150px;
+  width: 100%;
+  padding: 0 15vw;
+  padding-bottom: 100px;
+}
+
+.about-item {
+  border-radius: 1rem;
+  padding: 20px 30px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.about-item:hover {
+  background-color: var(--sp-black-light);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+@media (max-width: 700px) {
+  .about-container {
+    padding: 0 5vw;
+  }
 }
