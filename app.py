@@ -3,7 +3,7 @@ from flask import Flask, redirect, render_template, request, url_for
 from helpers import *
 from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
-from config import CLIENT_ID, CLIENT_SECRET
+import os
 
 # configure application
 app = Flask(__name__)
@@ -23,6 +23,8 @@ app.jinja_env.filters["key_format"] = key_format
 app.jinja_env.trim_blocks = True
 app.jinja_env.lstrip_blocks  = True
 
+CLIENT_ID = os.getenv('CLIENT_ID')
+CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 ACCESS_TOKEN = ""
 
 def token():
