@@ -4,7 +4,7 @@
 
 #### [▶️ Live demo](https://spotify-info-app.herokuapp.com/)
 
-This project is a web app that makes use of Spotify's Web API to present information about any track or album. This includes various audio features for a single track, like **Danceability**, **Energy**, **Instrumentalness**, **Popularity**, **Speechiness**, and **Tempo**, among others. Simply pasting a link will fetch the required information from Spotify and display it for the user.
+This project is a web app that makes use of Spotify's Web API to present information about any track or album. This includes various audio features for a single track, like **Danceability**, **Energy**, **Popularity**, **Tempo**, **Instrumentalness**, and **Speechiness**, among others. Simply pasting a link will fetch the required information from Spotify and display it for the user.
 
 The app is made with Flask, Python, HTML and CSS, and a little JavaScript.
 
