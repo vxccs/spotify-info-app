@@ -6,4 +6,3 @@ datetime
 gunicorn
 psycopg2
 apscheduler
-os
