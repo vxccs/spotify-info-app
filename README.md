@@ -14,7 +14,7 @@ If an album, the page will present links to every song in its tracklist. Each tr
 
 Each individual page is created with HTML, using Jinja syntax for templating and handling of the variable data. As well as CSS for the visual aspect, inspired by Spotify's own design language.
 
-Due to Spotify's API limitations, each access token is only valid for an hour, this is why the app makes usage of APScheduler to generate a new valid token every hour, keeping the app functional. Also defined in a helpers Python file, fhe app has various custom functions, including a URL parser that utilizes Regex patterns, as well as other functions used as Jinja filters, mainly for string and number formatting.
+Due to Spotify's API limitations, each access token is only valid for an hour, this is why the app makes usage of APScheduler to generate a new valid token every hour, keeping the app functional. Also defined in a helpers Python file, the app has various custom functions, including a URL parser that utilizes Regex patterns, as well as other functions used as Jinja filters, mainly for string and number formatting.
 
 # Possible improvements
 
