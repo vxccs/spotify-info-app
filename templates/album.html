@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ data["name"] }} by {{ data["artists"][0]["name"] }}
+{% endblock %}
+
+{% block main %}
+
+<div class="info-container d-flex align-items-start justify-content-center gap">
+
+    <div class="column-left sticky">
+        <div class="album-info text-center">
+
+            <div class="album-cover">
+                <img class="round-1 album-cover" src="{{ data['images'][1]['url'] }}" alt="{{ data['name'] }} Album Cover">
+                <img class="cover-blur round-1 album-cover" src="{{ data['images'][1]['url'] }}" alt="{{ data['name'] }} Album Cover Blurred">
+            </div>
+
+            <h1 class="text-big font-bold">{{ data["name"] }}</h1>
+
+            <h2 class="font-medium">
+                {% for artist in data["artists"] %}
+                {% if not loop.last %} {{ artist["name"] }},
+                {% else %} {{ artist["name"] }} {% endif %}
+                {% endfor %}
+            </h2>
+
+            <br>
+
+            <p class="text-small">{{ data["album_type"] | capitalize }} •
+                {% if data["release_date_precision"] == "day" %} {{ data["release_date"] | date_format }}
+                {% else %} {{ data["release_date"] | date_format }} {% endif %}
+            </p>
+
+            <p class="text-small">{{ data["total_tracks"] }} tracks, <span class="text-transparent-50">{{ data["tracks"]["items"] | sum(attribute='duration_ms') | sectomins_format }}</span></p>
+
+            <br>
+
+            <a href="{{ data['uri'] }}" class="hidelink">
+                <img class="spotify-button" src="{{ url_for('static', filename='images/spotify_logo.png') }}" alt="Spotify Logo" />
+            </a>
+
+        </div>
+    </div>
+
+    <div class="column-right">
+        {% for track in data["tracks"]["items"] %}
+        {% if not loop.first and track["disc_number"] > loop.previtem["disc_number"] %}
+
+        <div class="tracklist-item d-flex align-items-center gap-small no-hover">
+            <div class="number-column text-right text-transparent-75"><span class="material-symbols-rounded">album</span></div>
+            <div class="name-column text-transparent-75">
+                <p class="font-bold">Disc {{ track["disc_number"] }}</p>
+            </div>
+        </div>
+
+        {% endif %}
+
+        <a href="../track/{{ track['id'] }}" class="hidelink">
+            <div class="tracklist-item d-flex align-items-center gap-small">
+
+                <div class="number-column text-right text-transparent-75">{{ track["track_number"] }}</div>
+
+                <div class="name-column">
+                    <p class="font-bold">{{ track["name"] }}</p>
+                    <p class="text-small text-transparent-75">
+                        {% if track['explicit'] == true %}<span class="material-symbols-rounded font-regular explicit-icon">explicit</span>{% endif %}
+                        {% for artist in track["artists"] %}
+                        {% if not loop.last %} {{ artist["name"] }},
+                        {% else %} {{ artist["name"] }} {% endif %}
+                        {% endfor %}
+                    </p>
+                </div>
+
+                <div class="length-column text-left text-transparent-75">{{ track["duration_ms"] | sectomins}}</div>
+
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,8 @@
+Flask
+Flask-Session
+requests
+regex
+datetime
+gunicorn
+psycopg2
+apscheduler

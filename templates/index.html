@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Spotify Info
+{% endblock %}
+
+{% block main %}
+
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="main-card text-center">
+
+        <h1 class="intro-text font-bold">Display information about your favorite <span class="text-accent intro-accent">Spotify</span> tracks!</h1>
+
+        <form action="/" class="form-group" id="spotifylink" method="POST" name="spotifylink">
+            <input autocomplete="off" class="form-style" id="item-id" name="item-id" placeholder="Paste a link for a track or album" type="text">
+            <button type="submit" class="primary-button round-full font-bold">Search</button>
+        </form>
+
+    </div>
+</div>
+
+<footer class="disclaimer text-center text-transparent-50">
+    <p>Spotify is a trademark of Spotify AB. This app is not affiliated with Spotify.</p>
+</footer>
+
+{% endblock %}

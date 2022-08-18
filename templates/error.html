@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ error }}
+{% endblock %}
+
+{% block main %}
+
+<div class="container full-height full-width d-flex align-items-center justify-content-center">
+    <div class="text-center">
+
+        <h1 class="text-bigger">{{ error }}</h1><br>
+
+        <p>{{ message }}</p>
+
+        <p>You may <a class="hidelink font-bold" href="{{ url_for('index') }}">go back home</a> and try again.</p>
+
+    </div>
+</div>
+{% endblock %}

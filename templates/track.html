@@ -1,0 +1,139 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ track["name"] }} by {{ track["artists"][0]["name"] }}
+{% endblock %}
+
+{% block main %}
+
+<div class="info-container d-flex align-items-start justify-content-center gap">
+
+    <div class="column-left sticky">
+        <div class="album-info text-center">
+
+            <div class="album-cover">
+                <img class="round-1 album-cover" src="{{ track['album']['images'][1]['url'] }}" alt="{{ track['name'] }} Album Cover">
+                <img class="cover-blur round-1 album-cover" src="{{ track['album']['images'][1]['url'] }}">
+            </div>
+
+            <h1 class="text-big font-bold">{{ track["name"] }}</h1>
+
+            <h2 class="font-medium">
+                {% if track['explicit'] == true %}<span class="material-symbols-rounded font-regular explicit-icon">explicit</span>{% endif %}
+                {% for artist in track["artists"] %}
+                {% if not loop.last %} {{ artist["name"] }},
+                {% else %} {{ artist["name"] }} {% endif %}
+                {% endfor %}
+            </h2>
+
+            <br>
+
+            <p class="text-small">{{ track['duration_ms'] | sectomins_format }}</p>
+
+            <p class="text-small"><span class="text-transparent-50">from </span> <a href="../album/{{ track['album']['id'] }}" class="hidelink font-bold text-hover">{{ track['album']['name'] }}</a></p>
+            <br>
+
+            <a href="{{ track['uri'] }}" class="hidelink">
+                <img class="spotify-button" src="{{ url_for('static', filename='images/spotify_logo.png') }}" alt="Spotify Logo"></img>
+            </a>
+
+        </div>
+    </div>
+
+    <div class="column-right">
+        <div class="d-grid">
+
+            <div class="info-card round-1 text-center grid-item-extend">
+                <p class="font-bold text-bigger text-accent">{{ track['popularity']/10 }}</p>
+                <p class="font-bold text-small">Popularity</p>
+            </div>
+
+            <div class="info-card round-1 text-center">
+                <p class="font-bold text-bigger text-accent">{{ features['loudness'] | decimals_format }}</p>
+                <p class="font-bold text-small">Loudness</p>
+            </div>
+
+            <div class="info-card round-1 text-center ">
+                <p class="font-bold text-bigger text-accent">{{ features['mode'] | mode_format }}</p>
+                <p class="font-bold text-small">Mode</p>
+            </div>
+
+            <div class="info-card round-1 text-center grid-item-middle">
+                <div class="d-grid text-left gap">
+
+                    <h2 class="font-bold text-big grid-title text-accent">Audio features</h2>
+
+                    <div>
+                        <p class="font-bold text-small">Danceability</p>
+                        <div class="meter">
+                            <span class="meter-bar" style="width:{{ features['danceability'] * 100 }}%"></span>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <p class="font-bold text-small">Energy</p>
+                        <div class="meter">
+                            <span class="meter-bar" style="width:{{ features['energy'] * 100 }}%"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-small">Speechiness</p>
+                        <div class="meter">
+                            <span class="meter-bar" style="width:{{ features['speechiness'] * 100 }}%"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-small">Acousticness</p>
+                        <div class="meter">
+                            <span class="meter-bar" style="width:{{ features['acousticness'] * 100 }}%"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-small">Instrumentalness</p>
+                        <div class="meter">
+                            <span class="meter-bar" style="width:{{ features['instrumentalness'] * 100 }}%"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-small">Liveness</p>
+                        <div class="meter">
+                            <span class="meter-bar" style="width:{{ features['liveness'] * 100 }}%"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-small">Valence</p>
+                        <div class="meter">
+                            <span class="meter-bar" style="width:{{ features['valence'] * 100 }}%"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="info-card round-1 text-center">
+                <p class="font-bold text-bigger text-accent">{{ features['tempo'] | round|int }}</p>
+                <p class="font-bold text-small">BPM</p>
+            </div>
+
+            <div class="info-card round-1 text-center">
+                <p class="font-bold text-bigger text-accent">{{ features['time_signature'] }}/4</p>
+                <p class="font-bold text-small">Time Signature</p>
+            </div>
+
+            <div class="info-card round-1 text-center grid-item-extend">
+                <p class="font-bold text-bigger text-accent">{{ features['key'] | key_format(features['mode']) }}</p>
+                <p class="font-bold text-small">Key</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
